@@ -21,7 +21,7 @@ export default async function Navbar(){
                             'use server'
                             await signOut({redirectTo: "/"})
                         }}>
-                            <button type="submit">Sign Out</button>
+                            <button type="submit">Logout</button>
                         </form>
                         
 
