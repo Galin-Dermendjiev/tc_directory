@@ -1,20 +1,14 @@
 import Image from "next/image";
 import SearchForm from "../../components/SearchForm";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupCardType } from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({searchParams}: {searchParams: Promise<{query?: string}>}) {
 
   const query = (await searchParams).query
-  const posts = [{
-    _createdAt: new Date(),
-    views: 22,
-    author:{_id: 1, name: "Steven"},
-    _id: 1,
-    description: "this is a description",
-    image: "https://imgs.search.brave.com/TQyJbk0dzyAEIEb3ohg8qRUkhHZQg0UgomXNeGnTeBE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dGVzbGFvcmFjbGUu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI1LzA5L09wdGlt/dXMtZ2VuZXJhdGlv/bnMtY29sb3JzMS0y/LTJfNS0xMDI0eDUz/Ny5qcGc",
-    category: "Robots",
-    title: "Optimus robot"
-  }]
+
+  const posts = await client.fetch(STARTUPS_QUERY)
 
   return (
     <>
