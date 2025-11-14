@@ -42,7 +42,7 @@ export default function StartupCard({post}: {post: StartupCardType}){
                 <img src={image} alt="placeholder" className="startup-card_img"/>
 
                 <div className="flex-between mt-5 gap-3">
-                    <Link href={`/query=${category?.toLowerCase()}`}>
+                    <Link href={`/?query=${category?.toLowerCase()}`}>
                     <p className="text-16-medium">{category}</p>
                     </Link>
                     <Button className="startup-card_btn" asChild>
