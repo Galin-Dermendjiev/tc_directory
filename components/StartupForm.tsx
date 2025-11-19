@@ -1,21 +1,76 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
+import { formSchema } from "@/lib/validation";
+import { z } from 'zod'
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { createStartup } from "@/lib/actions";
 
 export default function StartupForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const [pitch, setPitch] = useState<string | undefined>();
+  const [pitch, setPitch] = useState<string>('');
+  const { toast } = useToast()
+  const router = useRouter()
+  
+  async function handleFormSubmit(previousState: any, formData: FormData){
+    try {
+        const formValues = {
+            title: formData.get('title'),
+            description: formData.get('description'),
+            category: formData.get('category'),
+            link: formData.get('link'),
+            pitch
+        }
+        //test image
+        //https://images.pexels.com/photos/26698447/pexels-photo-26698447.jpeg
+        await formSchema.parseAsync(formValues)
 
-  const isPending = false
+        const result = await createStartup(previousState, formData, pitch)
+        console.log(result)
+        if(result.status === "SUCCESS"){
+            toast({
+                title: 'Success',
+                description: 'Your startup has been created successfully'
+            })
+            router.push(`/startups/${result._id}`)
+        }
+        return result
+
+    } catch (error) {
+        if(error instanceof z.ZodError) {
+            const fieldErors = error.flatten().fieldErrors
+            setErrors(fieldErors as unknown as Record<string, string>)
+
+            toast({
+                title: 'Error',
+                description: 'Please check your inputs and try again.',
+                variant: 'destructive'
+            })
+            return {...previousState, error: 'Validation failed', status: "ERROR"}
+        }
+
+        toast({
+                title: 'Error',
+                description: 'An unexpected error has occured',
+                variant: 'destructive'
+            })
+        return {
+            ...previousState, error: 'An unexpected error has occured', status: "ERROR"
+        }
+    }
+  }
+
+  const [state, formAction, isPending] = useActionState(handleFormSubmit, {error: '', status: 'INITIAL'})
 
   return (
-    <form action={() => {}} className="startup-form">
+    <form action={formAction} className="startup-form">
       <div>
         <label htmlFor="title" className="startup-form_label">
           Title
