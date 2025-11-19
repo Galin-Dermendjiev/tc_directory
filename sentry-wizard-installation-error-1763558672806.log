@@ -1,0 +1,28 @@
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @sanity/visual-editing@4.0.0
+npm warn Found: @sanity/client@6.29.1
+npm warn node_modules/@sanity/visual-editing/node_modules/@sanity/client
+npm warn   @sanity/client@"^6.22.4" from @sanity/mutate@0.11.0-canary.4
+npm warn   node_modules/@sanity/visual-editing/node_modules/@sanity/mutate
+npm warn     @sanity/mutate@"0.11.0-canary.4" from @sanity/visual-editing@4.0.0
+npm warn     node_modules/@sanity/visual-editing
+npm warn
+npm warn Could not resolve dependency:
+npm warn peerOptional @sanity/client@"^7.12.0" from @sanity/visual-editing@4.0.0
+npm warn node_modules/@sanity/visual-editing
+npm warn   @sanity/visual-editing@"^4.0.0" from next-sanity@11.6.6
+npm warn   node_modules/next-sanity
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\D:\\VS Code\\Workspace\\NextJS\\tc_combinator\\node_modules\\@opentelemetry\\api',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'D:\VS Code\Workspace\NextJS\tc_combinator\node_modules\@opentelemetry\api'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'D:\\VS Code\\Workspace\\NextJS\\tc_combinator\\node_modules\\@opentelemetry\\api'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code EIDLETIMEOUT
+npm error Idle timeout reached for host `registry.npmjs.org:443`
+npm error A complete log of this run can be found in: C:\Users\last5\AppData\Local\npm-cache\_logs\2025-11-19T13_18_45_912Z-debug-0.log
