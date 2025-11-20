@@ -25,7 +25,7 @@ export default async function Navbar(){
                         </form>
                         
 
-                        <Link href={`/user/$session?.id`}>
+                        <Link href={`/user/${session?.id}`}>
                             <span>{session?.user?.name}</span>
                         </Link>
                     </>
