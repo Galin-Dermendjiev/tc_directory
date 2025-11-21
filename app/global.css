@@ -219,3 +219,8 @@
 .w-md-editor-toolbar {
     padding: 10px !important;
 }
+
+
+#sentry-feedback {
+  --actor-inset: auto auto 0.1rem 1rem;
+}
