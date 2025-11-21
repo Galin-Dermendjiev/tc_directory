@@ -15,6 +15,9 @@ import { createStartup } from "@/lib/actions";
 export default function StartupForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
   const [pitch, setPitch] = useState<string>('');
   const { toast } = useToast()
   const router = useRouter()
@@ -22,9 +25,9 @@ export default function StartupForm() {
   async function handleFormSubmit(previousState: any, formData: FormData){
     try {
         const formValues = {
-            title: formData.get('title'),
-            description: formData.get('description'),
-            category: formData.get('category'),
+            title,
+            description,
+            category,
             link: formData.get('link'),
             pitch
         }
@@ -39,7 +42,7 @@ export default function StartupForm() {
                 title: 'Success',
                 description: 'Your startup has been created successfully'
             })
-            router.push(`/startups/${result._id}`)
+            router.push(`/startup/${result._id}`)
         }
         return result
 
@@ -78,6 +81,8 @@ export default function StartupForm() {
         <Input
           id="title"
           name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="startup-form_input"
           required
           placeholder="Startup Title"
@@ -92,6 +97,8 @@ export default function StartupForm() {
         <Textarea
           id="description"
           name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className="startup-form_textarea"
           required
           placeholder="Startup Description"
@@ -108,6 +115,8 @@ export default function StartupForm() {
         <Input
           id="category"
           name="category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
           className="startup-form_input"
           required
           placeholder="Startup Category (Tech, Health, Energy...)"
