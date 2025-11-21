@@ -8,6 +8,7 @@ Custom user management with Sanity CMS
 JWT-based session handling with type-safe extensions
 Production-ready deployment on Vercel
 Fully typed with TypeScript
+Sentry for error tracking
 
 # Demo
 Live URL: https://tc-directory-jc4ug8qtr-galins-projects-0c463d70.vercel.app
