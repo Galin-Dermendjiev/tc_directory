@@ -9,23 +9,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({
       user: { name, email, image },
-      profile: { id, login, bio },
+      profile
     }) {
       const existingAuthor = await client
         .withConfig({ useCdn: false })
         .fetch(AUTHOR_BY_GITHUB_QUERY, {
-          id,
+          id: profile?.id,
         });
 
       if (!existingAuthor) {
         await writeClient.create({
           _type: "author",
-          id,
+          id: profile?.id,
           name,
-          username: login,
+          username: profile?.login,
           email,
           image,
-          bio: bio || "",
+          bio: profile?.bio || "",
         });
       }
 
