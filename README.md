@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## TC Directory
+A Next.js application with authentication, content management, and GitHub OAuth login.
+Built using NextAuth v5, Sanity CMS, and deployed on Vercel.
 
-## Getting Started
+# Features
+GitHub OAuth Authentication using NextAuth v5
+Custom user management with Sanity CMS
+JWT-based session handling with type-safe extensions
+Production-ready deployment on Vercel
+Fully typed with TypeScript
 
-First, run the development server:
+# Demo
+Live URL: https://tc-directory-jc4ug8qtr-galins-projects-0c463d70.vercel.app
 
-```bash
+# Tech Stack
+Framework: Next.js (App Router)
+Authentication: NextAuth v5 (GitHub OAuth)
+Database / CMS: Sanity CMS
+Language: TypeScript
+Deployment: Vercel
+# Setup & Installation
+1. Clone the repository  
+cd tc-directory
+
+2. Install dependencies  
+npm install
+
+3. Create environment variables
+
+### Create a .env.local file with the following:
+
+# NextAuth
+AUTH_SECRET=your_auth_secret  
+AUTH_GITHUB_ID=your_github_id  
+AUTH_GITHUB_SECRET=your_github_secret
+
+# Sanity
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id  
+NEXT_PUBLIC_SANITY_DATASET="production"  
+NEXT_PUBLIC_SANITY_API_VERSION="vX"  
+SANITY_WRITE_TOKEN=your_sanity_write_token  
+
+# Optional
+SENTRY_AUTH_TOKEN=your_sentry_auth_token
+
+
+Make sure to replace all placeholders with your actual credentials.
+
+# 4. Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Visit http://localhost:3000 to view the app.
