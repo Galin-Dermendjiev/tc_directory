@@ -18,6 +18,7 @@ export default function StartupForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
+  const [url, setUrl] = useState('');
   const [pitch, setPitch] = useState<string>('');
   const { toast } = useToast()
   const router = useRouter()
@@ -133,6 +134,8 @@ export default function StartupForm() {
         <Input
           id="link"
           name="link"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
           className="startup-form_input"
           required
           placeholder="Startup Image URL"

@@ -35,7 +35,22 @@ export const startup = defineType({
         defineField({
             name: 'image',
             type: 'url',
-            validation: (Rule) => Rule.required()
+            validation: (Rule) =>
+            Rule.required().custom(async (url) => {
+            try {
+                if (!url) return "Image URL is required";
+                const res = await fetch(url, { method: "HEAD" });
+                const contentType = res.headers.get("content-type") || "";
+
+                if (!contentType.startsWith("image/")) {
+                return "URL does not point to an image";
+                }
+            } catch {
+                return "Invalid or unreachable URL";
+            }
+
+            return true;
+            }),
         }),
         defineField({
             name: 'pitch',
